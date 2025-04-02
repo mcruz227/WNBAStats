@@ -9,7 +9,7 @@ CORS(app)
 def home():
     return "Wlcome to the wnba analystics api"
 
-df = pd.read_csv("backend/data/wnba_cleaned.csv")
+df = pd.read_csv("data/wnba_cleaned.csv")
 
 
 @app.route('/api/data', methods=['GET'])
