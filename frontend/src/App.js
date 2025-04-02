@@ -1,5 +1,5 @@
 import React from 'react';
-import WNBAData from '../components/WNBAData';
+import WNBAData from './components/WNBAData';
 
 function App() {
   return (
