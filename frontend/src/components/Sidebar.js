@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import './Sidebar.css';
 // import { Link } from 'react-router-dom';
 
-function Sidebar () {
-    const [isOpen, setIsOpen] = useState(false);
-    // const sidebarRef = useRef(null);
-
+function Sidebar ({ isOpen, setIsOpen}) {
     const toggleSidebar = () => {
-        setIsOpen((prev) => !prev);
+        setIsOpen(!isOpen);
     };
 
 
@@ -39,6 +36,6 @@ function Sidebar () {
 
         </>
     );
-} 
 
-export default Sidebar;
+}
+    export default Sidebar;

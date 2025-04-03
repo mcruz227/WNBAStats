@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 // import WNBAData from './components/WNBAData';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
@@ -8,16 +8,16 @@ import './App.css'; //general styling
 
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="app">
+    <div className= {`app  ${isOpen ? 'shifted' : ''}`}>
       <Header />
-      <div className="content">
-        <Sidebar />
-        <MainContent />
-      </div>
-      <Footer />
-      {/* <WNBAData /> */} 
-    </div>
+        <Sidebar isOpen={isOpen} setIsOpen={setIsOpen}/>
+        <MainContent isOpen={isOpen} />
+        <Footer />
+      </div> 
+      // {/* <WNBAData /> */} 
   );
 };
 

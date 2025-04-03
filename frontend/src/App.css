@@ -7,79 +7,42 @@ body{
   overflow-x: hidden;
 }
 
-title {
-  text-align: center;
-  font-size: 24px;
-  margin-top: 20px;
-  transition: margin-left 0.3s ease-in-out;
-}
-.sidebar.open ~ .title {
-  margin-left: 125px;
-}
-
-
-
-.container{
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.app-containter {
+.app {
   display: flex;
   flex-direction: column; /* stacks elements*/
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  width: 100%;
-  max-width: 120px;
-  margin: auto;
-  padding: 20px;
+  transition: margin-left 0.3s ease-in-out;
 }
 
-@media (min-width: 768px) { /* only applies when teh screen is bigger than 768 so desktops, larger screens */
-  .app-container {
-    flex-direction: row;     /*  side by side layout */
-  }
+.sidebar {
+  position: fixed;
+  left: -250px;
+  width: 250px;
+  height: 100vh;
+  background-color: white;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  transition: left 0.3s ease-in-out;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
+.sidebar.open {
+  left: 0;
 }
 
-button {
+.menu-button {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
   padding: 10px 15px;
-  font-size: 16px;
+  cursor: ppointer;
+  z-index: 1100;
 }
-@media (max-width: 768px) {
-  /* adjust for smaller screens */
-  button {
-      font-size: 14px;
-      padding: 8px 12px;
-  }
-  .sidebar.open ~ .title {
-    margin-left: 0;
-  }
+.menu-button:hover {
+  background-color: #575757;
 }
-
-.dashboard{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-@media (max-width: 768px) {
-  .dashboard {
-     flex-direction: column;
-     align-items: center;
-  }
-}
-
-
-
-
 
 
