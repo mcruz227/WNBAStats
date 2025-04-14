@@ -7,15 +7,15 @@ CORS(app)
 
 @app.route("/")
 def home():
-    return "Wlcome to the wnba analystics api"
+    return "loaded page"
 
-df = pd.read_csv("data/wnba_cleaned.csv")
+df = pd.read_csv("data/updatedData.csv")
 
 
 @app.route('/api/data', methods=['GET'])
 def get_data():
-    """retunr smal sample"""
-    return jsonify(df.head(10).to_dict(orient='records'))
+    """return small sample"""
+    return jsonify(df.to_dict(orient='records'))
 
 if __name__ == "__main__":
     app.run(debug=True)

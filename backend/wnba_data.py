@@ -2,8 +2,10 @@ import pandas as pd
 import os 
 
 def load_data():
-    file_path = "backend/data/wnba_box_scores_merge.csv"
-    cleaned_path = "backend/data/wnba_cleaned.csv"
+    file_path = "/Users/monic/Documents/GitHub/WNBAStats/backend/data/wnba_box_scores_merge.csv"
+    # cleaned_path = "backend/data/wnba_cleaned.csv"
+    updatedData = "/Users/monic/Documents/GitHub/WNBAStats/backend/data/updatedData.csv"
+
 
 
     if not os.path.exists(file_path):
@@ -17,7 +19,7 @@ def load_data():
     print("file load success")
 
 
-    df.dropna(inplace= True)
+    # df.dropna(inplace= True)
 
 
 
@@ -30,9 +32,9 @@ def load_data():
     df.drop(columns=columns_to_drop, inplace= True, errors="ignore")
 
     # cleaned_file_path = "data/wnba_cleaned.csv"
-    df.to_csv(cleaned_path, index=False)
+    df.to_csv(updatedData, index=False)
 
-    print(f"cleaned data saved to {cleaned_path}")
+    print(f"cleaned data saved to {updatedData}")
     
 
     return df

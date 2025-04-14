@@ -1,8 +1,13 @@
 .main-content {
-    padding: 20px;
-    text-align: center;
-    width: calc(100% - 250px);
-    transition: margin-left 0.3s ease-in-out;
+  margin-top: 80px;
+  padding: 20px;
+  min-height: calc(100vh -160px);
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  width: calc(100% - 250px);
+  transition: margin-left 0.3s ease-in-out;
 }
 .app.shifted .main-content {
   margin-left: 250px;
