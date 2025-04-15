@@ -35,6 +35,14 @@ def load_data():
     df.to_csv(updatedData, index=False)
 
     print(f"cleaned data saved to {updatedData}")
+
+    summary_df = df.groupby(["team_name", "season"]).agg(
+    games_played=("team_winner", "count"), wins =("team_winner", "sum") ).reset_index()
+    summary_df["losses"] = summary_df["games_played"] - summary_df["wins"]
+    summary_df["win_pct"] = summary_df["wins"] / summary_df["games_played"].round(3)
+    print(summary_df.head())
+    summary_df.to_csv("team_summary.csv", index=False)
+
     
 
     return df

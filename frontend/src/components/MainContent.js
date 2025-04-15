@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer } from 'recharts';
 import './MainContent.css';
 
@@ -9,6 +9,7 @@ const MainContent = ( { isOpen} ) => {
     const [filteredData, setFilteredData] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState('');
     const [error, setError] = useState(null);
+
 
     useEffect(() => {
         fetch('http://localhost:5000/api/data')
@@ -37,7 +38,12 @@ const MainContent = ( { isOpen} ) => {
             setFilteredData(data.filter(item => item.team_name.toLowerCase() === team.toLowerCase()));
         }
     };
-
+ 
+    const sortedData = useMemo(() => {
+        return data
+            .filter(item => item.team_name === selectedTeam)
+            .sort((a,b) => a.season - b.season);
+    } , [data, selectedTeam]);
 
     return (
         <main className= {`main-content  ${isOpen ? 'shifted' : ''}`}>
@@ -48,11 +54,12 @@ const MainContent = ( { isOpen} ) => {
            <label htmlFor="teamFilter"> Filter by Team: </label>
            <select id="teamFilter" value={selectedTeam} onChange={handleFilterChange}>
                 <option value=""> All Teams </option>
-                {Array.from(new Set(data?.map(team => team.team_name) || [] ))
+                {Array.from(new Set(data?.map(team => team.team_name) || []))
                 .map((team,index) => (
                     <option key={index} value={team}>{team}</option>
                 ))}
            </select>
+
 {/* DISPLAYING THE TABLE */}
            <table>
             <thead>
@@ -77,18 +84,23 @@ const MainContent = ( { isOpen} ) => {
            </table>
 
            {/* WIN AND LOSSES LINE CHART */}
-           <h3> Team Performance </h3>
+           {selectedTeam && (
+
+          <> 
+           <h3> {selectedTeam} Team Performance </h3>
            <ResponsiveContainer width="90%" height={300}>
-                    <LineChart data={filteredData}>
+                    <LineChart data={sortedData}>
                         <CartesianGrid strokeDasharray="3  3"/>
                         <XAxis dataKey="season" tickFormatter={(tick) => `${tick}`} />
                         <YAxis label={{ value: "Wins/Losses", angle: -90, position:"insideLeft" }} />
                         <Tooltip />
                         <Legend />
-                        <Line type="monotone" dataKey="Wins" stroke="green" name="Wins" />
-                        <Line type="monotone" dataKey="Losses" stroke="red" name="Losses" />
+                        <Line type="monotone" dataKey="wins" stroke="green" name="Wins" />
+                        <Line type="monotone" dataKey="losses" stroke="red" name="Losses" />
                     </LineChart>
            </ResponsiveContainer>
+           </>
+           )}
 
            {error ? <p className ="error"> {error}</p> : null}
 
