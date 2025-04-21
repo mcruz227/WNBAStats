@@ -1,15 +1,21 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS 
+import os
 import pandas as pd
 
-app = Flask(__name__) 
+app = Flask(__name__, static_folder="build", static_url_path="")
 CORS(app)
 
-@app.route("/")
-def home():
-    return "loaded page"
 
-df = pd.read_csv("data/updatedData.csv")
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, "index.html")
+
+
 
 
 @app.route('/api/data', methods=['GET'])
