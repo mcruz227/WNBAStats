@@ -7,6 +7,24 @@
   --highlight: #ff4081;
 }
 
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+html, body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+}
+
+/* .main-content{
+  flex: 1;
+  overflow-y: auto;
+} */
+
 body{
 
   margin:0;
@@ -24,6 +42,7 @@ body{
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  height:100%;
   transition: margin-left 0.3s ease-in-out;
 }
 
@@ -56,7 +75,5 @@ body{
   background-color: #575757;
 }
 
-.footer {
-  height: 60px;
-}
+
 
