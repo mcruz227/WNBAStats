@@ -4,11 +4,16 @@
   min-height: calc(100vh -160px);
   overflow-y: auto;
   position: relative;
-  z-index: 1;
   text-align: center;
   width: calc(100% - 250px);
   transition: margin-left 0.3s ease-in-out;
+  font-size: 20px;
+  background-color: #ffffff;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  
 }
+
 .app.shifted .main-content {
   margin-left: 250px;
 }
@@ -18,4 +23,104 @@
         max-width: 100%;
         margin-left: 0;
     }
+  }
+
+  .subtext {
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #555;
+  }
+
+  .filter-group{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+
+
+  .filter-group label {
+    font-weight: bold;
+    color: #1a1a1a;
+  }
+
+  .filter-group select {
+    padding: 8px 14px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  .toggle-btn {
+    margin: 15px 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #FF6600;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: backround 0.3s ease;
+
+  }
+
+  toggle-btn:hover {
+    background-color: #e45600;
+  }
+
+  .data-table{
+
+    margin-top: 10px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+    max-width: 800px;
+    /* background: white; */
+    /* border-radius: 10px; */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    /* overflow-x: auto; */
+    animation: fadeIn 0.4s ease-in-out;
+    max-height: 300px;
+    overflow-y: scroll;
+
+  }
+  @keyframes fadeIn{
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .data-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .data-table th, .data-table td{
+    text-align: center;
+    padding: 12px;
+  }
+
+  .data-table thead{
+    background-color: #ff6600;
+    color: white;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+  }
+
+  .data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .error {
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
   }

@@ -7,13 +7,20 @@ import Footer from './components/Footer';
 import './App.css'; //general styling
 
 
+
 function App() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const scrollToId =(id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior: "smooth"});
+  };
+  
 
   return (
     <div className= {`app  ${isOpen ? 'shifted' : ''}`}>
       <Header />
-        <Sidebar isOpen={isOpen} setIsOpen={setIsOpen}/>
+        <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} scrollToId={scrollToId}/>
         <MainContent isOpen={isOpen} />
         <Footer />
       </div> 

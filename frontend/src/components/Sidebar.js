@@ -2,7 +2,7 @@ import React, {useEffect } from 'react';
 import './Sidebar.css';
 // import { Link } from 'react-router-dom';
 
-function Sidebar ({ isOpen, setIsOpen}) {
+function Sidebar ({ isOpen, setIsOpen, scrollToId}) {
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     };
@@ -18,7 +18,7 @@ function Sidebar ({ isOpen, setIsOpen}) {
         document.addEventListener('click', handleClickOutside);
         return () => { document.removeEventListener('click', handleClickOutside);
         }
-    }, [isOpen]);
+    }, [setIsOpen]);
 
 
     return (
@@ -28,14 +28,16 @@ function Sidebar ({ isOpen, setIsOpen}) {
             </button>
 
             <div className={`sidebar ${isOpen ? 'open' : ''}`}>
-                <a href="#" onClick={toggleSidebar}> Home</a>
-                <a href="#" onClick={toggleSidebar}> Teams</a>
-                <a href="#" onClick={toggleSidebar}>  Stats</a>
-                <a href="#" onClick={toggleSidebar}> Seasons</a>
+                <li onClick={() => scrollToId("main-title")}> Dashboard</li>
+                <li onClick={() => scrollToId("table-section")}> Team Table</li>
+                <li onClick={() => scrollToId("graph-section")}> Chart </li>
+                {/* <li onClick={() => setShowThemeModal(true)}> Change Theme </li> */}
+                <li onClick={() => scrollToId("footer")}> About</li>
+                {/* <a href="#" onClick={toggleSidebar}> Seasons</a> */}
             </div>
 
         </>
-    );
+    ); 
 
 }
     export default Sidebar;
