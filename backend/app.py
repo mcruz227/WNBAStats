@@ -20,11 +20,9 @@ def serve(path):
 
 @app.route('/api/data', methods=['GET'])
 def get_data():
+    csv_path = (os.path.join(os.path.dirname(__file__),'data', 'team_summary.csv'))
 
-    
-  
-    df = pd.read_csv(os.path.join(os.path.dirname(__file__),'data', 'team_summary.csv'))
-
+    df = pd.read_csv(csv_path)
 
     return jsonify(df.to_dict(orient='records'))
 
