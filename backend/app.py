@@ -23,7 +23,7 @@ def get_data():
 
     
   
-    df = pd.read_csv(os.path.join("data", "team_summary.csv"))
+    df = pd.read_csv(os.path.join(os.path.dirname(__file__),'data', 'team_summary.csv'))
 
 
     return jsonify(df.to_dict(orient='records'))
